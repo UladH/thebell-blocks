@@ -1,0 +1,39 @@
+<div
+  #backdrop
+  class="fixed inset-0 z-[100] flex items-center justify-center bg-black/55 outline-none"
+  tabindex="-1"
+  (click)="onBackdropClick($event)"
+  (keydown.escape)="closed.emit()"
+>
+  <div
+    class="box-border max-h-[90vh] w-full max-w-[440px] overflow-y-auto rounded-[20px] bg-white p-8 shadow-[0_20px_60px_rgb(0_0_0/0.25)]"
+  >
+    <ng-content select="[modalTitle]"></ng-content>
+
+    <div class="text-[15px] leading-normal text-black">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="mt-6 grid grid-cols-[1fr_auto_1fr] items-center">
+      @if (showBack()) {
+        <button
+          type="button"
+          class="cursor-pointer justify-self-start border-none bg-transparent p-0 text-sm text-black"
+          (click)="back.emit()"
+        >
+          {{ 'modal.back' | translate }}
+        </button>
+      } @else {
+        <span></span>
+      }
+
+      @if (pagination()) {
+        <span class="justify-self-center text-sm text-muted">{{ pagination() }}</span>
+      } @else {
+        <span></span>
+      }
+
+      <ng-content select="[modalCta]"></ng-content>
+    </div>
+  </div>
+</div>

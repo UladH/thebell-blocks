@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand: #ff1818;
+  --color-brand-dark: #d40000;
+  --color-muted: #9e9e9e;
+  --color-border: #e6e6e6;
+  --color-surface: #f8f8f8;
+  --font-sans: 'Roboto Flex', system-ui, sans-serif;
+}
+
+@layer components {
+  .btn-brand {
+    @apply cursor-pointer rounded-lg border-[0.5px] border-brand-dark bg-brand px-6 py-2.5 text-sm font-semibold text-white;
+  }
+
+  .card-outline {
+    @apply rounded-lg border-[0.5px] border-border bg-white;
+  }
+
+  .cell-shadow {
+    background:
+      linear-gradient(180deg, transparent 48%, rgb(0 0 0 / 70%) 100%),
+      linear-gradient(0deg, rgb(0 0 0 / 15%), rgb(0 0 0 / 15%));
+  }
+}
+
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}

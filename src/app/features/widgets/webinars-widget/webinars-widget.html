@@ -1,0 +1,19 @@
+<app-grid-line [basis]="25">
+  @for (webinar of webinars(); track webinar.id) {
+    <app-grid-cell [withImage]="!!webinar.coverImage">
+      @if (webinar.coverImage) {
+        <img cellImage [src]="webinar.coverImage" alt="" class="h-full w-full object-cover" />
+      }
+      <app-webinar-card [webinar]="webinar" />
+    </app-grid-cell>
+  }
+</app-grid-line>
+
+<a
+  class="btn-brand mt-2.5 block w-full text-center"
+  [href]="donateUrl"
+  target="_blank"
+  rel="noopener"
+>
+  {{ 'webinars.supportCta' | translate }}
+</a>

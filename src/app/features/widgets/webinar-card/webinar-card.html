@@ -1,0 +1,24 @@
+<span
+  class="mb-2.5 self-start text-[11px] font-semibold uppercase"
+  [class.text-muted]="state() !== WebinarState.Upcoming"
+  [class.text-brand]="state() === WebinarState.Upcoming"
+>
+  {{ webinar().date | date: 'd MMMM, HH:mm' }}
+</span>
+<h4 class="mb-1.5 text-[15px] leading-snug font-semibold">{{ webinar().title }}</h4>
+<p class="text-xs leading-snug opacity-70">{{ webinar().speaker }}</p>
+
+@if (state() === WebinarState.Past && webinar().detailsUrl) {
+  <a
+    class="mt-auto self-start pt-2.5 text-xs font-semibold text-brand no-underline"
+    [href]="webinar().detailsUrl"
+    target="_blank"
+    rel="noopener"
+  >
+    {{ 'webinar.watchRecording' | translate }}
+  </a>
+} @else {
+  <span class="mt-auto self-start pt-2.5 text-xs font-semibold text-muted">
+    {{ 'webinar.comingSoon' | translate }}
+  </span>
+}

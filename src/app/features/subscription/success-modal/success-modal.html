@@ -1,0 +1,54 @@
+@if (step() === 1) {
+  <app-modal pagination="1/2" (closed)="finish.emit()">
+    <span modalTitle class="mb-4 block text-2xl leading-snug font-bold text-black">
+      {{ 'success.title' | translate }}
+    </span>
+
+    <p>
+      {{ 'success.confirmedPrefix' | translate }} <strong>{{ product().name }}</strong>{{
+        'success.confirmedSuffix' | translate
+      }}
+    </p>
+    <p>{{ 'success.accessSoon' | translate }}</p>
+
+    @if (product().coverImage) {
+      <img class="my-4 w-full rounded-xl object-cover" [src]="product().coverImage" alt="" />
+    } @else {
+      <div
+        class="my-4 flex h-[160px] items-center justify-center rounded-xl bg-gradient-to-br from-black to-[#333] text-xl font-bold text-white"
+      >
+        {{ product().name }}
+      </div>
+    }
+
+    <button modalCta type="button" class="btn-brand justify-self-end" (click)="next.emit()">
+      {{ 'success.next' | translate }}
+    </button>
+  </app-modal>
+} @else {
+  <app-modal pagination="2/2" [showBack]="true" (back)="back.emit()" (closed)="finish.emit()">
+    <span modalTitle class="mb-4 block text-2xl leading-snug font-bold text-black">
+      {{ 'success.title' | translate }}
+    </span>
+
+    <p class="mb-3 font-semibold">{{ 'success.whatsNext' | translate }}</p>
+
+    <div class="mb-4 flex flex-col items-center gap-1">
+      <div class="box-border w-full rounded-[10px] bg-surface px-4 py-3.5 text-center">
+        <span class="font-semibold text-brand">{{ 'success.step1Action' | translate }}</span>
+        {{ 'success.step1Rest' | translate }}
+      </div>
+      <div class="text-muted">↓</div>
+      <div class="box-border w-full rounded-[10px] bg-surface px-4 py-3.5 text-center">
+        <span class="font-semibold text-brand">{{ 'success.step2Action' | translate }}</span>
+        {{ 'success.step2Rest' | translate }}
+      </div>
+    </div>
+
+    <p>{{ 'success.thankYou' | translate }}</p>
+
+    <button modalCta type="button" class="btn-brand justify-self-end" (click)="finish.emit()">
+      {{ 'success.done' | translate }}
+    </button>
+  </app-modal>
+}

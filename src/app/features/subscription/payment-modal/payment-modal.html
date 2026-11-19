@@ -1,0 +1,78 @@
+<app-modal pagination="2/3" [showBack]="true" (back)="back.emit()" (closed)="closed.emit()">
+  <span modalTitle class="mb-4 block text-2xl leading-snug font-bold text-black">
+    {{ 'payment.title' | translate }}
+  </span>
+
+  <p class="mb-5 text-sm text-muted">
+    {{ product().name }} — {{ tariff().label }}, ${{ tariff().priceUsd }}
+  </p>
+
+  <form [formGroup]="form">
+    <input
+      type="text"
+      class="mb-2.5 box-border w-full rounded-[10px] border-[1.5px] px-3.5 py-3 text-sm"
+      [class.border-border]="
+        !(form.controls.cardNumber.invalid && form.controls.cardNumber.touched)
+      "
+      [class.border-brand]="form.controls.cardNumber.invalid && form.controls.cardNumber.touched"
+      [placeholder]="'payment.cardNumberPlaceholder' | translate"
+      maxlength="19"
+      inputmode="numeric"
+      formControlName="cardNumber"
+    />
+    @if (form.controls.cardNumber.invalid && form.controls.cardNumber.touched) {
+      <p class="-mt-1 mb-2.5 text-[13px] text-brand">
+        {{ 'payment.cardNumberError' | translate }}
+      </p>
+    }
+
+    <div class="flex items-center gap-2">
+      <input
+        type="text"
+        class="box-border w-[70px] rounded-[10px] border-[1.5px] px-3.5 py-3 text-sm"
+        [class.border-border]="!(form.controls.expMonth.invalid && form.controls.expMonth.touched)"
+        [class.border-brand]="form.controls.expMonth.invalid && form.controls.expMonth.touched"
+        [placeholder]="'payment.expMonthPlaceholder' | translate"
+        maxlength="2"
+        inputmode="numeric"
+        formControlName="expMonth"
+      />
+      <span class="text-muted">/</span>
+      <input
+        type="text"
+        class="box-border w-[70px] rounded-[10px] border-[1.5px] px-3.5 py-3 text-sm"
+        [class.border-border]="!(form.controls.expYear.invalid && form.controls.expYear.touched)"
+        [class.border-brand]="form.controls.expYear.invalid && form.controls.expYear.touched"
+        [placeholder]="'payment.expYearPlaceholder' | translate"
+        maxlength="2"
+        inputmode="numeric"
+        formControlName="expYear"
+      />
+      <input
+        type="text"
+        class="box-border w-[70px] rounded-[10px] border-[1.5px] px-3.5 py-3 text-sm"
+        [class.border-border]="!(form.controls.cvv.invalid && form.controls.cvv.touched)"
+        [class.border-brand]="form.controls.cvv.invalid && form.controls.cvv.touched"
+        placeholder="CVV"
+        maxlength="3"
+        inputmode="numeric"
+        formControlName="cvv"
+      />
+    </div>
+    @if (
+      (form.controls.expMonth.invalid && form.controls.expMonth.touched) ||
+      (form.controls.expYear.invalid && form.controls.expYear.touched) ||
+      (form.controls.cvv.invalid && form.controls.cvv.touched)
+    ) {
+      <p class="-mt-1 mb-2.5 text-[13px] text-brand">
+        {{ 'payment.expiryOrCvvError' | translate }}
+      </p>
+    } @else if (form.errors?.['expired'] && form.controls.expYear.touched) {
+      <p class="-mt-1 mb-2.5 text-[13px] text-brand">{{ 'payment.expiredError' | translate }}</p>
+    }
+  </form>
+
+  <button modalCta type="button" class="btn-brand justify-self-end" (click)="onPayClick()">
+    {{ 'payment.payButton' | translate: { amount: tariff().priceUsd } }}
+  </button>
+</app-modal>

@@ -1,0 +1,13 @@
+@if (withImage()) {
+  <div class="absolute inset-0">
+    <ng-content select="[cellImage]"></ng-content>
+    <div class="cell-shadow absolute inset-0"></div>
+  </div>
+}
+<div
+  class="relative z-10 box-border flex h-full flex-col p-5"
+  [class.text-white]="withImage()"
+  [class.justify-end]="withImage()"
+>
+  <ng-content></ng-content>
+</div>

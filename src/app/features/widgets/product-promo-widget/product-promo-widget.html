@@ -1,0 +1,19 @@
+<app-grid-line [basis]="100">
+  @if (product(); as product) {
+    <app-grid-cell [withImage]="!!product.coverImage">
+      @if (product.coverImage) {
+        <img cellImage [src]="product.coverImage" alt="" class="h-full w-full object-cover" />
+      }
+      <span
+        class="mb-4 self-start rounded-lg bg-black px-2.5 py-1.5 text-[11px] leading-none font-semibold text-white uppercase"
+      >
+        {{ 'product.dayBadge' | translate }}
+      </span>
+      <h3 class="mb-2 text-xl leading-snug font-semibold max-md:text-lg">{{ product.name }}</h3>
+      <p class="text-sm leading-snug opacity-70">{{ product.pitch }}</p>
+      <button type="button" class="btn-brand mt-auto self-start" (click)="onCtaClick()">
+        {{ ctaLabel() }}
+      </button>
+    </app-grid-cell>
+  }
+</app-grid-line>
