@@ -1,0 +1,45 @@
+{
+  "modal": {
+    "back": "Назад"
+  },
+  "product": {
+    "dayBadge": "Продукт дня",
+    "tryForPrice": "Попробовать за ${{amount}}",
+    "subscribe": "Подписаться",
+    "learnMore": "Узнать больше"
+  },
+  "webinar": {
+    "watchRecording": "Смотреть запись",
+    "comingSoon": "Подробности скоро"
+  },
+  "webinars": {
+    "supportCta": "Поддержать The Chat"
+  },
+  "tariff": {
+    "next": "Далее"
+  },
+  "payment": {
+    "title": "Оплата",
+    "cardNumberPlaceholder": "Номер карты",
+    "cardNumberError": "Введите корректный номер карты",
+    "expMonthPlaceholder": "ММ",
+    "expYearPlaceholder": "ГГ",
+    "expiryOrCvvError": "Проверьте срок действия и CVV",
+    "expiredError": "Срок действия карты истёк",
+    "payButton": "Оплатить ${{amount}}"
+  },
+  "success": {
+    "title": "Подписка оплачена!",
+    "confirmedPrefix": "Вы успешно оформили подписку",
+    "confirmedSuffix": ".",
+    "accessSoon": "Доступ откроется в течение нескольких минут.",
+    "next": "Дальше",
+    "whatsNext": "Что дальше:",
+    "step1Action": "Проверьте личный кабинет",
+    "step1Rest": "— доступ открывается автоматически",
+    "step2Action": "Управляйте подпиской",
+    "step2Rest": "в настройках профиля в любой момент",
+    "thankYou": "Готово! Спасибо, что оформили подписку.",
+    "done": "Понятно"
+  }
+}
